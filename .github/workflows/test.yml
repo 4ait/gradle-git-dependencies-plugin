@@ -1,0 +1,19 @@
+name: Test
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+      - name: Run chmod to make gradlew executable
+        run: chmod +x ./gradlew
+      - name: Run test
+        run: ./gradlew test
